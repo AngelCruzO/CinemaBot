@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace Cinema.Bot.Services.LuisAI
 {
-    public class LuisAIService
+    public class LuisAIService: ILuisAIService
     {
         //variable global
         public LuisRecognizer _luisRecognizer { get; set; }
