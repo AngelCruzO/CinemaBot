@@ -1,12 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using Cinema.Bot.Common.Models.EntityModel;
 using Cinema.Bot.Common.Models.Movies;
 using Cinema.Bot.Services.LuisAI;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -87,9 +89,27 @@ namespace Cinema.Bot
         //metodo para intenciones de compra
         private async Task IntentBuyMovie(ITurnContext<IMessageActivity> turnContext, RecognizerResult luisResult, CancellationToken cancellationToken)
         {
-            await turnContext.SendActivityAsync("Estas son las películas de nuestra cartelera");
-            await Task.Delay(1500);
-            await turnContext.SendActivityAsync(activity: ShowMovies(GetMovies()), cancellationToken);
+            var entities = luisResult.Entities.ToObject<EntityLuis>();
+            
+            if(entities.ListMovies?.Count > 0)
+            {
+                //pelicula especifica
+                var movie = entities.ListMovies.FirstOrDefault().FirstOrDefault();
+                var filteredList = GetMovies().Where(x => x.name.ToLower() == movie.ToLower()).ToList();
+
+                await turnContext.SendActivityAsync($"Aqui tienes el detalle de {movie}");
+                await Task.Delay(1500);
+                await turnContext.SendActivityAsync(activity: ShowMovies(filteredList), cancellationToken);
+            }
+            else
+            {
+                //lista de peliculas
+                await turnContext.SendActivityAsync("Estas son las películas de nuestra cartelera");
+                await Task.Delay(1500);
+                await turnContext.SendActivityAsync(activity: ShowMovies(GetMovies()), cancellationToken);
+            }
+
+            
         }
         
         //Lista de peliculas

@@ -7,6 +7,7 @@ namespace Cinema.Bot.Common.Models.EntityModel
     {
         [JsonProperty("$instance")]
         public Instance _instance { get; set; }
+        public List<List<string>> ListMovies { get; set; }
     }
 
     public class Instance
