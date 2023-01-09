@@ -1,4 +1,27 @@
-﻿# Cinema.Bot
+﻿# Creación recursos en Azure
+
+1.- Crear un grupo de recursos con el nombre grp-cinemabot
+
+[grupo de recursos]
+
+2.- Crear un servicio de cognitivo (Reconocimiento del lenguaje)
+
+[cognitive services]
+
+3.- terminada la creacion del servicio cognitivo entrar en [LUIS](https://www.luis.ai/), iniciar sesión con la cuenta de azure
+
+4.- si es la primera vez que se accede al sitio, seleccionar lo siguiente
+
+[auth]
+
+5.- Dentro del repositorio se encuentra un archivo JSON con la configuración creada para el bot, solo hay que seleccionar import ->
+import as JSON, buscar el archivo y colocar el nombre de CinemaBot
+
+6.- ya importado el archivo JSON ir a manage -> Azure Resources -> Add prediction resource. Colocar las siguientes opciones
+
+[prediction]
+
+# Cinema.Bot
 
 Bot Framework v4 empty bot sample.
 
