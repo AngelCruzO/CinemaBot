@@ -1,0 +1,2 @@
+[config]
+SCM_SCRIPT_GENERATOR_ARGS=--aspNetCore "C:\Users\Angel Cruz O\Desktop\UDEMY\Bot Azure LUIS\Cinema\Cinema.Bot\Cinema.bot.csproj"
