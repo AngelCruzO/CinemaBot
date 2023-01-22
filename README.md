@@ -6,7 +6,9 @@
 
 # Creación de Recursos en Azure
 
-## Grupo de recursos y Cognitive Service
+<details open>
+<summary>Grupo de recursos y Cognitive Service</summary>
+
 1 Crear un grupo de recursos, para la implementación
 
 2 Crear un cognitive service de LUIS (Language Understanding)
@@ -27,8 +29,11 @@
 ![Agregar recurso de predicción](images/prediction.png)
 
 7 Por ultimo hay que entrenar el modelo, dando click en Train, con esto el modelo esta listo para ser utilizado
+</details>
 
-## Recurso de identidad
+<details>
+<summary>Recurso de identidad</summary>
+
 1 Abrir una terminal e introducir az login, con esto iniciaremos sesión a la cuenta de Azure, asociada al servicio cognitivo
 
 2 Asociar la suscripción de la cuenta de Azure con:
@@ -54,8 +59,11 @@ Se desplegara la siguiente información
 }
 ```
 > Es importante guardar el clientId, name; posteriormente serán utilizados
+</details>
 
-## Recurso bot
+<details>
+<summary>Recurso bot</summary>
+
 1 para crear un bot se ocupa el siguiente comando
 ```
 az deployment group create --resource-group "<file arm\>" --parameters appId="<clientId\>" appType="UserAssignedMSI" tenantId="<tenantId\>" existingUserAssignedMSIName="<identity name\>" existingUserAssignedMSIResourceGroupName="<resource group name\>" botId="<bot name\>" botSku="S1"  --name "cinemaBot"
@@ -70,8 +78,10 @@ az deployment group create --resource-group "<file arm\>" --parameters appId="<c
 | botId | bot name |
 | botSku | F0 (gratis) o S1 (estandar) |
 | name | nombre del despliegle |
+</details>
 
-## App service
+<details>
+<summary>App service</summary>
 
 - Crear un App services, con los siguientes datos:
 
@@ -82,6 +92,7 @@ az deployment group create --resource-group "<file arm\>" --parameters appId="<c
 ![Opciones redes](images/web3.png)
 
 ![Opciones supervisión](images/web4.png)
+</details>
 
 # Despliegue hacia Azure
 
