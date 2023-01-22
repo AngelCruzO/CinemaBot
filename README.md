@@ -11,13 +11,20 @@
 
 2 Crear un cognitive service de LUIS (Language Understanding)
 
+![Opciones iniciales](images/LUIS1.png)
+![Opciones de red](images/LUIS2.png)
+
 3 Configurar el servicio [LUIS](https://www.luis.ia), iniciar sesión con la cuenta de Azure
 
 4 Para nuevos usuarios se necesita configurar el auth del servicio cognitivo
 
+![Agregar Auth](images/auth.png)
+
 5 Para tener el servicio completo falta importar las intenciones y las entidades que conforman las respuestas del bot. Import -> import JSON -> buscar el archivo (CinemaBot.json) -> Nombre: CinemaBot
 
 6 Una vez importando el JSON, manage -> Azure Resources -> Add prediction resource
+
+![Agregar recurso de predicción](images/prediction.png)
 
 7 Por ultimo hay que entrenar el modelo, dando click en Train, con esto el modelo esta listo para ser utilizado
 
@@ -66,7 +73,15 @@ az deployment group create --resource-group "<file arm\>" --parameters appId="<c
 
 ## App service
 
-1 Crear un App services, con los siguientes datos:
+- Crear un App services, con los siguientes datos:
+
+![Opciones iniciales](images/web1.png)
+
+![Opciones implementación](images/web2.png)
+
+![Opciones redes](images/web3.png)
+
+![Opciones supervisión](images/web4.png)
 
 # Despliegue hacia Azure
 
