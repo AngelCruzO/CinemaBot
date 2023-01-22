@@ -26,7 +26,7 @@
 
 6 Una vez importando el JSON, manage -> Azure Resources -> Add prediction resource
 
-![Agregar recurso de predicción](images/prediction.png)
+![Opciones de prediccion](images/Prediction.png)
 
 7 Por ultimo hay que entrenar el modelo, dando click en Train, con esto el modelo esta listo para ser utilizado
 </details>
@@ -95,6 +95,8 @@ az deployment group create --resource-group "<file arm\>" --parameters appId="<c
 </details>
 
 # Despliegue hacia Azure
+
+Una configuración importante es entrar al recurso App service, buscar el url de acceso a la web; posteriormente entrar al recurso del bot, configuraciones, en la opción "Punto de conexión de mensajeria" reemplazar la url desde http hasta .net, por la url de acceso al App services. 
 
 Para desplegar nuestro proyecto existen dos opciones:
 
