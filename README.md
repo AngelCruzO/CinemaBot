@@ -68,16 +68,16 @@ Se desplegara la siguiente información
 ```
 az deployment group create --resource-group "<file arm\>" --parameters appId="<clientId\>" appType="UserAssignedMSI" tenantId="<tenantId\>" existingUserAssignedMSIName="<identity name\>" existingUserAssignedMSIResourceGroupName="<resource group name\>" botId="<bot name\>" botSku="S1"  --name "cinemaBot"
 ```
-| Opción | Valor |
-| ------ | ----- |
-| appId | clientId del recurso de identidad |
-|  appType  | UsserAssignedMSI |
-|  tenantId  | tenantId de la suscripción |
+| Opción | Valor                                               |
+| ------ | --------------------------------------------------- |
+| appId | clientId del recurso de identidad                   |
+|  appType  | UsserAssignedMSI                                    |
+|  tenantId  | tenantId de la suscripción                          |
 |  existingUserAssignedMSIName | Plantilla ARM incluida en los archivos del proyecto |
-| existingUserAssignedMSIResourceGroupName | resource group name |
-| botId | bot name |
-| botSku | F0 (gratis) o S1 (estandar) |
-| name | nombre del despliegle |
+| existingUserAssignedMSIResourceGroupName | resource group name                                 |
+| botId | bot name                                            |
+| botSku | F0 (gratis) o S1 (estandar)                         |
+| name | nombre del despliegue                               |
 </details>
 
 <details>
@@ -96,7 +96,7 @@ az deployment group create --resource-group "<file arm\>" --parameters appId="<c
 
 # Despliegue hacia Azure
 
-Una configuración importante es entrar al recurso App service, buscar el url de acceso a la web; posteriormente entrar al recurso del bot, configuraciones, en la opción "Punto de conexión de mensajeria" reemplazar la url desde http hasta .net, por la url de acceso al App services. 
+Una configuración importante es entrar al recurso App service, buscar el url de acceso a la web; posteriormente entrar al recurso del bot, configuraciones, en la opción "Punto de conexión de mensajería" reemplazar la url desde http hasta .net, por la url de acceso al App services. 
 
 Para desplegar nuestro proyecto existen dos opciones:
 
@@ -127,3 +127,55 @@ b) Despliegue por perfil
 - Nuevo 
 - Importar el perfil
 - Publicar
+
+# Archivo de configuración
+
+Dentro del proyecto se encuentra el archivo appsettings.json, el cual se configura con lo siguiente:
+
+```
+{
+  "MicrosoftAppType": "UserAssignedMSI",
+  "MicrosoftAppId": "#############",
+  "MicrosoftAppPassword": "",
+  "MicrosoftAppTenantId": "############",
+  "Luis.AppId": "###########",
+  "Luis.ApiKey": "############",
+  "Luis.HostName": "https://cog-cinemabot.cognitiveservices.azure.com/"
+```
+| Opción               |   Valor                                                    |
+| -------------------- | ---------------------------------------------------------- |
+| MicrosoftAppType     |   UserAssignedMSI                                          |
+| MicrosoftAppId       |   identificador servicio de bot                            |
+| MicrosoftAppTenantId |   identificador del tenant al que pertenece la suscripción |
+| Luis.AppId           |   identificador del servicio LUIS                          |
+| Luis.ApiKey          |   secreto de acceso al servicio LUIS                       |
+| Luis.HostName        |   URL para consultas al servicio LUIS                      |
+
+> Para las opciones de Luis, entrar a [LUIS](https://luis.ia), en la pestaña manage -> settings se encuentra el AppId; asi como ApiKey y HostName se encuentran en Azure Resources -> Prediction Resources
+
+# Pruebas
+
+Se puede probar el bot de dos formas:
+
+a) Entrando al portal de Azure
+
+- Entrar en https://portal.azure.com
+- Ir al recurso del bot
+- Buscar en el menú izquierdo Test in Web Chat (Probar en Chat web)
+- Interactuar con el bot
+
+b) Bot Framework Emulator
+
+- Abrir Bot Framework Emulator (V4)
+- Despleguar el menu de File
+- Seleccionar New BotOpen Configuration
+- Llenar los siguientes campos
+![New Bot](images/New.png)
+- Salvar y Conectar
+- Interacturar con el bot
+
+# Eliminar Recursos
+
+- En Azure Portal, abra el grupo de recursos del bot.
+- Seleccione Eliminar grupo de recursos para eliminar el grupo y todos los recursos que contiene.
+- Escriba el nombre del grupo de recursos en el panel de confirmación y seleccione Eliminar.
